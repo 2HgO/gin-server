@@ -1,0 +1,6 @@
+Makefile
+.gitignore
+.git
+.vscode
+**/*_test.go
+README.md

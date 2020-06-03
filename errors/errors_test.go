@@ -11,7 +11,7 @@ import (
 	. "github.com/stretchr/testify/assert"
 	"go.mongodb.org/mongo-driver/mongo"
 	"golang.org/x/crypto/bcrypt"
-	"gopkg.in/go-playground/validator.v9"
+	"github.com/go-playground/validator/v10"
 )
 
 type fieldError struct{}

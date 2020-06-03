@@ -15,5 +15,4 @@ require (
 	go.mongodb.org/mongo-driver v1.3.3
 	golang.org/x/crypto v0.0.0-20200510223506-06a226fb4e37
 	golang.org/x/sys v0.0.0-20200323222414-85ca7c5b95cd // indirect
-	gopkg.in/go-playground/validator.v9 v9.31.0
 )

@@ -45,3 +45,7 @@ stop: stop-app
 stop-app:
 	@ docker stop gin-server &> /dev/null | true
 	@ docker rm gin-server &> /dev/null | true
+
+.PHONY: test
+test:
+	DB_URL='mongodb://localhost:27017/gin-server' go test ./...

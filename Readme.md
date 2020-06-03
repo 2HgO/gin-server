@@ -1,6 +1,6 @@
 # Gin Server
 
-Sample web server built using [Gin](https://github.com/gin-gonic/gin) (a framework for building web applications [Go](https://golang.org))
+Sample web server built using [Gin](https://github.com/gin-gonic/gin) (a framework for building web applications in [Go](https://golang.org))
 
 ## Getting Started
 

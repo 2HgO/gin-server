@@ -163,14 +163,32 @@ types:
           body:
             application/json:
               type: bad-response
+              example: |
+                {
+                  "success": false,
+                  "message": "Validation failed on field { password }, Condition: min{ 6 }, Value Recieved: pass",
+                  "error": "VALIDATION_ERROR"
+                }
         409:
           body:
             application/json:
               type: bad-response
+              example: |
+                {
+                  "success": false,
+                  "message": "Entry already exists",
+                  "error": "ENTRY_EXISTS"
+                }
         500:
           body:
             application/json:
               type: bad-response
+              example: |
+                {
+                  "success": false,
+                  "message": "An error has occured on our end",
+                  "error": "FATAL_ERROR"
+                }
   /login:
     post:
       description: Login with valid user credentials

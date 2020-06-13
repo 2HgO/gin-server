@@ -9,7 +9,7 @@ import (
 
 var movieRoutes = []endpoint{
 	{
-		Path:   "/",
+		Path:   "",
 		Method: http.MethodGet,
 		Handlers: []gin.HandlerFunc{
 			handlers.GetMovies,
@@ -37,14 +37,14 @@ var movieRoutes = []endpoint{
 		},
 	},
 	{
-		Path:   "/",
+		Path:   "",
 		Method: http.MethodPut,
 		Handlers: []gin.HandlerFunc{
 			handlers.CreateMovie,
 		},
 	},
 	{
-		Path:   "/",
+		Path:   "/movie/:movieID",
 		Method: http.MethodDelete,
 		Handlers: []gin.HandlerFunc{
 			handlers.DeleteMovie,

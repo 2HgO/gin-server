@@ -9,7 +9,7 @@ import (
 
 var watchlistRoutes = []endpoint{
 	{
-		Path:   "/",
+		Path:   "",
 		Method: http.MethodGet,
 		Handlers: []gin.HandlerFunc{
 			handlers.GetWatchlist,

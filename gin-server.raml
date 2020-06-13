@@ -1,0 +1,245 @@
+#%RAML 1.0
+---
+title: sample gin server
+baseUri: http://127.0.0.1:55099
+
+types:
+  user: |
+    {
+      "$schema": "http://json-schema.org/draft-04/schema",
+      "type": "object",
+      "required": [
+        "firstName",
+        "lastName",
+        "email",
+        "password"
+      ],
+      "properties": {
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "role": {
+          "type": "integer",
+          "default": 0,
+          "maximum": 1,
+          "minimum": 0
+        },
+        "dob": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "likes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 12,
+            "minLength": 12
+          }
+        }
+      }
+    }
+
+  good-response: |
+    {
+      "$schema": "http://json-schema.org/draft-04/schema",
+      "type": "object",
+      "required": [
+        "message",
+        "success",
+        "data"
+      ],
+      "properties": {
+        "data": {
+          "type": [
+            "object",
+            "array"
+          ]
+        },
+        "message": {
+          "type": "string"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      }
+    }
+
+  good-response-with-count: |
+    {
+      "$schema": "http://json-schema.org/draft-04/schema",
+      "type": "object",
+      "required": [
+        "message",
+        "success",
+        "data",
+        "count"
+      ],
+      "properties": {
+        "data": {
+          "type": [
+            "object",
+            "array"
+          ]
+        },
+        "message": {
+          "type": "string"
+        },
+        "success": {
+          "type": "boolean"
+        },
+        "count": {
+          "type": "integer"
+        }
+      }
+    }
+  
+  bad-response: |
+    {
+      "$schema": "http://json-schema.org/draft-04/schema",
+      "type": "object",
+      "required": [
+        "message",
+        "success",
+        "error"
+      ],
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "success": {
+          "type": "boolean"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    }
+
+/auth:
+  /sign-up:
+    put:
+      description: Sign up as a new user
+      body: 
+        application/json:
+          type: user
+          example: |
+            {
+              "firstName": "Oghogho",
+              "lastName": "Odemwingie",
+              "role": 1,
+              "dob": "1997-02-18",
+              "email": "odemwingieog@gmail.com",
+              "password": "password",
+              "likes": ["5ed69805816a882fd4599647"]
+            }
+      responses: 
+        201:
+          body:
+            application/json:
+              type: good-response
+              example: |
+                {
+                  "success": true,
+                  "message": "User created successfully",
+                  "data": {
+                    "_id": "5ed69955aa42806b3faa7193",
+                    "firstName": "Oghogho",
+                    "lastName": "Odemwingie",
+                    "role": 1,
+                    "dob": "1997-02-18",
+                    "email": "odemwingieog@gmail.com",
+                    "likes": ["5ed69805816a882fd4599647"]
+                  }
+                }
+        400:
+          body:
+            application/json:
+              type: bad-response
+        409:
+          body:
+            application/json:
+              type: bad-response
+        500:
+          body:
+            application/json:
+              type: bad-response
+  /login:
+    post:
+      description: Login with valid user credentials
+  /forgot-password:
+    post:
+      description: Begin reset password process for forgotten user password
+  /reset-password:
+    post:
+      description: Reset user forgotten password
+
+/categories:
+  get:
+    description: Get all movie categories
+  put:
+    description: Create new movie category
+  /search:
+    get:
+      description: Search for movie category
+  /category:
+    /{categoryID}:
+      get:
+        description: Get movie category using its ID
+      delete:
+        description: Delete movie category using its ID
+
+/movies:
+  get:
+    description: Get all movies
+  put:
+    description: Create new movie
+  /category:
+    /{categoryID}:
+      get:
+        description: Get all movies under category specified by category ID
+  /movie:
+    /{movieID}:
+      get:
+        description: Get movie using its ID
+      delete:
+        description: Delete movie using its ID
+  /search:
+    get:
+      description: Search for movie
+
+/users:
+  get:
+    description: Get all users
+  patch:
+    description: Update requesting user's account
+  delete:
+    description: Delete requesting user's account
+  /search:
+    get:
+      description: Search for user
+  /user:
+    /{userID}:
+      get:
+        description: Get user using their ID
+
+/watchlists:
+  get:
+    description: Get requesting user's watchlist
+  /movie:
+    /{movieID}:
+      put:
+        description: Add movie to requesting user's watchlist
+      delete:
+        description: Remove movie from requesting user's watchlist
+  /user:
+    /{userID}:
+      get:
+        description: Get watchlist of user specified by user ID

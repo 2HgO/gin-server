@@ -9,7 +9,7 @@ import (
 
 var userRoutes = []endpoint{
 	{
-		Path: "/",
+		Path: "",
 		Method: http.MethodGet,
 		Handlers: []gin.HandlerFunc{
 			handlers.GetUsers,
@@ -23,14 +23,14 @@ var userRoutes = []endpoint{
 		},
 	},
 	{
-		Path: "/",
+		Path: "",
 		Method: http.MethodPatch,
 		Handlers: []gin.HandlerFunc{
 			handlers.UpdateUser,
 		},
 	},
 	{
-		Path: "/",
+		Path: "",
 		Method: http.MethodDelete,
 		Handlers: []gin.HandlerFunc{
 			handlers.DeleteUser,

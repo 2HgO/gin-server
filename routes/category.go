@@ -9,7 +9,7 @@ import (
 
 var categoryRoutes = []endpoint{
 	{
-		Path:   "/",
+		Path:   "",
 		Method: http.MethodGet,
 		Handlers: []gin.HandlerFunc{
 			handlers.GetCategories,
@@ -30,7 +30,7 @@ var categoryRoutes = []endpoint{
 		},
 	},
 	{
-		Path:   "/",
+		Path:   "",
 		Method: http.MethodPut,
 		Handlers: []gin.HandlerFunc{
 			handlers.CreateCategory,
